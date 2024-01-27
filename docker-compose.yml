@@ -1,21 +1,8 @@
-version: '3'
-
+version: "3"
 services:
-  react-app:
-    build:
-      context: . #context refers all project folders included dockerfile after specifying build context folder 
-      dockerfile: Dockerfile.dev # we define dockerfile name
-    ports:
-      - "3000:3000"
-    volumes:
-      - /home/node/app/node_modules
-      - .:/home/node/app #before the colon '.' refers outside the container meaning local folder after ':' refers inside the container files
-  
-  react-app-tests:
+  web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    volumes:
-      - /home/node/app/node_modules
-      - .:/home/node/app
-    command: ["npm","run","test"] 
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"

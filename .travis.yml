@@ -1,0 +1,23 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t onr363/react-app -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true onr363/react-app npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "reactapp"
+  env: "Reactapp-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-851725610263"
+  bucket_path: "react"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY

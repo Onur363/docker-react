@@ -1,14 +1,10 @@
 FROM node:16-alpine
-USER node
 
-RUN mkdir -p /home/node/app
-WORKDIR /home/node/app
+WORKDIR '/app'
 
-#packge.json files is being copied into workdir(means /app
-COPY --chown=node:node ./package.json ./ 
+COPY package.json .
 RUN npm install
 
-#all files into our project copied into workdir(app)
-COPY --chown=node:node ./ ./ 
+COPY . .
 
-CMD ["npm","start"]
+CMD ["npm", "run", "start"]

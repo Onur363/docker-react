@@ -15,6 +15,7 @@ deploy:
   region: "eu-north-1"
   app: "reactapp"
   env: "Reactapp-env"
+
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY_ID
